@@ -1,0 +1,14 @@
+{
+    "legacy_addon_id": "",
+    "title": "Kieran/IdentitySteam",
+    "description": "Steam identity integration for Identity",
+    "version_id": 1000030,
+    "version_string": "1.0.0 Beta",
+    "dev": "Kieran Anderson",
+    "dev_url": "https://github.com/KieranFYI",
+    "faq_url": "",
+    "support_url": "https://github.com/KieranFYI/IdentitySteam/issues",
+    "extra_urls": [],
+    "require": ["Kieran\\Identity"],
+    "icon": "fa-user-secret"
+}
