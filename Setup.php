@@ -12,7 +12,7 @@ class Setup extends \XF\AddOn\AbstractSetup
 	
 	public function installStep1(array $stepParams = [])
 	{
-		$this->getIdentityTypeRepo()->addIdentityType('steam', 'Steam', 'Kieran\\IdentitySteam:Identity');
+		$this->getIdentityTypeRepo()->addIdentityType('steam', 'Steam', 'Kieran\\IdentitySteam:IdentitySteam');
 	}
 
 	public function upgrade(array $stepParams = [])

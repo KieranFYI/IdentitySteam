@@ -4,18 +4,19 @@ namespace Kieran\IdentitySteam\Repository;
 
 use Kieran\Identity\Repository\IdentityTypeWrapper;
 use Kieran\IdentitySteam\Libarys\OpenID;
+use Kieran\Identity\Pub\Controller\Identity as IdentityController;
 
-class Identity extends IdentityTypeWrapper
+class IdentitySteam extends IdentityTypeWrapper
 {
 
-	public function actionAdd(\Kieran\Identity\Pub\Controller\Identity $controller, $returnURL) {
+	public function actionAdd(IdentityController $controller, $returnURL) {
 
 		$openId = new OpenID((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'], $returnURL);
 		$openId->identity = 'https://steamcommunity.com/openid';
         return $controller->redirect($openId->authUrl());
 	}
 
-	public function actionValidate(\Kieran\Identity\Pub\Controller\Identity $controller, $returnURL) {
+	public function actionValidate(IdentityController $controller, $returnURL) {
 		$openId = new OpenID((!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'], $returnURL);
 			
 		if(!$openId->mode) {
@@ -42,7 +43,7 @@ class Identity extends IdentityTypeWrapper
 					$response = curl_exec($ch);
 					$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
 
-					$controller->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, $xml->steamID, $steamid, $identities->count() ? 0 : 1);
+					$controller->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, html_entity_decode($xml->steamID), $steamid, $identities->count() ? 0 : 1);
 
 					return $controller->redirect('/identities/');
 
@@ -53,7 +54,7 @@ class Identity extends IdentityTypeWrapper
 					$response = curl_exec($ch);
 					$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
 
-					$identity->identity_name = $xml->steamID;
+					$identity->identity_name = html_entity_decode($xml->steamID);
 					$identity->save();
 					return $controller->redirect('/identities/');
 				} else {
@@ -71,7 +72,7 @@ class Identity extends IdentityTypeWrapper
 		$response = curl_exec($ch);
 		$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
 
-		$identity->identity_name = $xml->steamID;
+		$identity->identity_name = html_entity_decode($xml->steamID);
 		$identity->save();
 	}
 
