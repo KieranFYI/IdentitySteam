@@ -10,3 +10,5 @@
 *.sw?
 
 _releases
+_output
+_data
