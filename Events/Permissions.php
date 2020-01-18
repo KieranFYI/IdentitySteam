@@ -38,6 +38,13 @@ class Permissions {
         self::rebuildUser($entity);
     }
 
+	public static function postSaveGroup(Entity $entity) {
+        $users = self::getUsersByGroup($entity->user_group_id);
+        foreach($users as $user) {
+            self::rebuildUser($user);
+        }    
+    }
+
 	public static function postSave(Entity $entity) {
         if ($entity->user_id > 0 && !isset(self::$users[$entity->user_id])) {
             $user = $this->em->find('XF:User', $entity->user_id);
