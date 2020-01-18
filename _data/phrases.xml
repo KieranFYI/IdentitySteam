@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="permission.identitySteam_ban" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Ban other players]]></phrase>
+  <phrase title="permission.identitySteam_changemap" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Change the map or major gameplay features]]></phrase>
+  <phrase title="permission.identitySteam_chat" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Special chat privileges]]></phrase>
+  <phrase title="permission.identitySteam_cheats" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Change sv_cheats or use cheating commands]]></phrase>
+  <phrase title="permission.identitySteam_config" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Execute config files]]></phrase>
+  <phrase title="permission.identitySteam_custom1" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 1]]></phrase>
+  <phrase title="permission.identitySteam_custom2" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 2]]></phrase>
+  <phrase title="permission.identitySteam_custom3" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 3]]></phrase>
+  <phrase title="permission.identitySteam_custom4" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 4]]></phrase>
+  <phrase title="permission.identitySteam_custom5" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 5]]></phrase>
+  <phrase title="permission.identitySteam_custom6" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Custom Group 6]]></phrase>
+  <phrase title="permission.identitySteam_cvar" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Change most cvars]]></phrase>
+  <phrase title="permission.identitySteam_generic" version_id="1000170" version_string="1.0.1"><![CDATA[Generic admin; required for admins]]></phrase>
+  <phrase title="permission.identitySteam_immunity" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Immunity]]></phrase>
+  <phrase title="permission.identitySteam_kick" version_id="1000170" version_string="1.0.1"><![CDATA[Kick other players]]></phrase>
+  <phrase title="permission.identitySteam_password" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Set a password on the server]]></phrase>
+  <phrase title="permission.identitySteam_rcon" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Use RCON commands]]></phrase>
+  <phrase title="permission.identitySteam_reservation" version_id="1000170" version_string="1.0.1"><![CDATA[Reserved slot access]]></phrase>
+  <phrase title="permission.identitySteam_root" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Magically enables all flags and ignores immunity values]]></phrase>
+  <phrase title="permission.identitySteam_slay" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Slay/harm other players]]></phrase>
+  <phrase title="permission.identitySteam_unban" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Remove bans]]></phrase>
+  <phrase title="permission.identitySteam_vote" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Start or create votes]]></phrase>
+  <phrase title="permission_interface.identitySteam" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Source Admins]]></phrase>
+</phrases>
