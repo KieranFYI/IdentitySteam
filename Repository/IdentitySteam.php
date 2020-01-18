@@ -38,7 +38,7 @@ class IdentitySteam extends IdentityTypeWrapper
 				if (!$identity) {
 					$identities = $controller->getIdentityRepo()->findIdentityByUserIdByType(\XF::visitor()->user_id, $type->identity_type_id);
 					
-                    $xml = $this->getProfileXML($identity->identity_value);
+                    $xml = $this->getProfileXML($steamid);
 
 					$controller->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, html_entity_decode($xml->steamID), $steamid, $identities->count() ? 0 : 1);
 
@@ -46,9 +46,10 @@ class IdentitySteam extends IdentityTypeWrapper
 
 				} else if ($identity->user_id == \XF::visitor()->user_id) {
 					
-					$xml = $this->getProfileXML($steamid);
+					$xml = $this->getProfileXML($identity->identity_value);
 
                     $identity->identity_name = html_entity_decode($xml->steamID);
+                    $identity->last_update = \XF::$time;
                     $identity->status = 0;
 					$identity->save();
 					return $controller->redirect('account/identities');
