@@ -33,30 +33,25 @@ class IdentitySteam extends IdentityTypeWrapper
 				
 
 				$type = $controller->getIdentityTypeRepo()->findIdentityType('steam');
-				$identity = $controller->getIdentityRepo()->findIdentityByValueByType($steamid, $type->identity_type_id);
+				$identity = $controller->getIdentityRepo()->findIdentityByValueByType($steamid, $type->identity_type_id, false);
 				
 				if (!$identity) {
 					$identities = $controller->getIdentityRepo()->findIdentityByUserIdByType(\XF::visitor()->user_id, $type->identity_type_id);
-
-					$ch = curl_init('https://steamcommunity.com/profiles/' . $steamid . '/?xml=1');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-					$response = curl_exec($ch);
-					$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
+					
+                    $xml = $this->getProfileXML($identity->identity_value);
 
 					$controller->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, html_entity_decode($xml->steamID), $steamid, $identities->count() ? 0 : 1);
 
-					return $controller->redirect('/identities/');
+					return $controller->redirect('account/identities');
 
 				} else if ($identity->user_id == \XF::visitor()->user_id) {
 					
-					$ch = curl_init('https://steamcommunity.com/profiles/' . $steamid . '/?xml=1');
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-					$response = curl_exec($ch);
-					$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
+					$xml = $this->getProfileXML($steamid);
 
-					$identity->identity_name = html_entity_decode($xml->steamID);
+                    $identity->identity_name = html_entity_decode($xml->steamID);
+                    $identity->status = 0;
 					$identity->save();
-					return $controller->redirect('/identities/');
+					return $controller->redirect('account/identities');
 				} else {
 					throw $controller->exception($controller->notFound(\XF::phrase('kieran_identity_message_error_alreadytaken')));
 				}		
@@ -67,13 +62,15 @@ class IdentitySteam extends IdentityTypeWrapper
 	}
 
 	public function actionUpdate($identity) {
-		$ch = curl_init('https://steamcommunity.com/profiles/' . $identity->identity_value . '/?xml=1');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		$response = curl_exec($ch);
-		$xml = simplexml_load_string($response, "SimpleXMLElement", LIBXML_NOCDATA);
-
+        $xml = $this->getProfileXML($identity->identity_value);
 		$identity->identity_name = html_entity_decode($xml->steamID);
 		$identity->save();
-	}
+    }
+    
+    private function getProfileXML($steamId64) {
+		$ch = curl_init('https://steamcommunity.com/profiles/' . $steamId64 . '/?xml=1');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		return simplexml_load_string(curl_exec($ch), "SimpleXMLElement", LIBXML_NOCDATA);
+    }
 
 }
