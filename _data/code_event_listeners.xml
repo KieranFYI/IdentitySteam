@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <code_event_listeners>
   <listener event_id="entity_post_save" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="postSave" active="1" hint="XF\Entity\PermissionEntry"/>
+  <listener event_id="entity_post_save" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="postSaveGroup" active="1" hint="XF\Entity\UserGroup"/>
   <listener event_id="entity_post_save" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="postSaveUser" active="1" hint="XF\Entity\User"/>
-  <listener event_id="entity_post_save" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="postSaveUser" active="1" hint="XF\Entity\UserGroup"/>
 </code_event_listeners>
