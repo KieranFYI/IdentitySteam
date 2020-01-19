@@ -32,15 +32,15 @@ class IdentitySteam extends IdentityTypeWrapper
 				$steamid = $matches[1];
 				
 
-				$type = $controller->getIdentityTypeRepo()->findIdentityType('steam');
-				$identity = $controller->getIdentityRepo()->findIdentityByValueByType($steamid, $type->identity_type_id, false);
+				$type = $this->getIdentityTypeRepo()->findIdentityType('steam');
+				$identity = $this->getIdentityRepo()->findIdentityByValueByType($steamid, $type->identity_type_id, false);
 				
 				if (!$identity) {
-					$identities = $controller->getIdentityRepo()->findIdentityByUserIdByType(\XF::visitor()->user_id, $type->identity_type_id);
+					$identities = $this->getIdentityRepo()->findIdentityByUserIdByType(\XF::visitor()->user_id, $type->identity_type_id);
 					
                     $xml = $this->getProfileXML($steamid);
 
-					$controller->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, html_entity_decode($xml->steamID), $steamid, $identities->count() ? 0 : 1);
+					$this->getIdentityRepo()->addIdentity(\XF::visitor()->user_id, $type, html_entity_decode($xml->steamID), $steamid, $identities->count() ? 0 : 1);
 
 					return $controller->redirect('account/identities');
 
@@ -73,5 +73,15 @@ class IdentitySteam extends IdentityTypeWrapper
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 		return simplexml_load_string(curl_exec($ch), "SimpleXMLElement", LIBXML_NOCDATA);
     }
+
+    public function getIdentityRepo()
+	{
+		return $this->repository('Kieran\Identity:Identity');
+	}
+
+	public function getIdentityTypeRepo()
+	{
+		return $this->repository('Kieran\Identity:IdentityType');
+	}
 
 }
