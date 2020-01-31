@@ -115,7 +115,7 @@ class Permissions {
 
                 $userAdmin->name = $user['username'];
 
-                if ($identity->status == 1) {
+                if ($identity->status == 1 && $cache_value['identitySteam']['sync']) {
                     $userFlags = '';
 
                     foreach(self::$flags as $flag) {

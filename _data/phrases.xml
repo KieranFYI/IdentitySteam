@@ -20,6 +20,7 @@
   <phrase title="permission.identitySteam_reservation" version_id="1000170" version_string="1.0.1"><![CDATA[Reserved slot access]]></phrase>
   <phrase title="permission.identitySteam_root" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Magically enables all flags and ignores immunity values]]></phrase>
   <phrase title="permission.identitySteam_slay" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Slay/harm other players]]></phrase>
+  <phrase title="permission.identitySteam_sync" version_id="1000170" version_string="1.0.1"><![CDATA[Sync Flags]]></phrase>
   <phrase title="permission.identitySteam_unban" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Remove bans]]></phrase>
   <phrase title="permission.identitySteam_vote" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Start or create votes]]></phrase>
   <phrase title="permission_interface.identitySteam" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Source Admins]]></phrase>
