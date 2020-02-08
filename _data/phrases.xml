@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phrases>
+  <phrase title="kieran_identity_steam_chat_rank" version_id="1000270" version_string="1.0.2"><![CDATA[Chat Rank]]></phrase>
   <phrase title="permission.identitySteam_ban" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Ban other players]]></phrase>
   <phrase title="permission.identitySteam_changemap" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Change the map or major gameplay features]]></phrase>
   <phrase title="permission.identitySteam_chat" version_id="1000030" version_string="1.0.0 Beta"><![CDATA[Special chat privileges]]></phrase>

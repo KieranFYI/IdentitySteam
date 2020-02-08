@@ -2,4 +2,5 @@
 <code_event_listeners>
   <listener event_id="app_complete" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="rebuildUsers" active="1"/>
   <listener event_id="entity_post_save" execute_order="10" callback_class="Kieran\IdentitySteam\Events\Permissions" callback_method="postSaveEntity" active="1"/>
+  <listener event_id="entity_structure" execute_order="10" callback_class="Kieran\IdentitySteam\Events\UserGroup" callback_method="structure" active="1" hint="XF\Entity\UserGroup"/>
 </code_event_listeners>

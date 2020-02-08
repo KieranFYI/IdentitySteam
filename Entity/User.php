@@ -20,6 +20,7 @@ class User extends Entity
             'name' => ['type' => self::STR, 'maxLength' => 65],
             'flags' => ['type' => self::STR, 'maxLength' => 30],
             'immunity' => ['type' => self::INT],
+            'chat_rank' => ['type' => self::STR],
         ];        
         return $structure;
     }

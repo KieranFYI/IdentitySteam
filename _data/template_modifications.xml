@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<template_modifications/>
+<template_modifications>
+  <modification type="admin" template="user_group_edit" modification_key="identitySteamChatRank" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:textboxrow name="banner_text" value="{$userGroup.banner_text}" maxlength="{{ max_length($userGroup, 'banner_text') }}"
+				label="{{ phrase('user_banner_text') }}"
+				explain="{{ phrase('banner_displayed_under_name_of_members_of_this_group') }}" />]]></find>
+    <replace><![CDATA[<xf:textboxrow name="banner_text" value="{$userGroup.banner_text}" maxlength="{{ max_length($userGroup, 'banner_text') }}"
+				label="{{ phrase('user_banner_text') }}"
+				explain="{{ phrase('banner_displayed_under_name_of_members_of_this_group') }}" />
+
+<xf:textboxrow name="chat_rank" value="{$userGroup.chat_rank}" maxlength="{{ max_length($userGroup, 'chat_rank') }}"
+				label="{{ phrase('kieran_identity_steam_chat_rank') }}" />]]></replace>
+  </modification>
+</template_modifications>

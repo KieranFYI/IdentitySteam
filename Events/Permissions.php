@@ -80,10 +80,18 @@ class Permissions {
 
         if ($type == null) {
             return;
-        }
+		}
+		
+		$BGroups = self::getUserGroupRepo()->findUserGroupsForList();
+		$groups = [];
+		foreach ($BGroups as $group) {
+			if ($group->discord_id != null) {
+				$groups[$group->user_group_id] = $group->chat_rank;
+			}
+		}
 
         $users = XF::db()->fetchAll('SELECT
-			  u.user_id, u.username, pc.cache_value
+			  u.user_id, u.username, pc.cache_value, u.user_group_id, u.secondary_group_ids
 			FROM
 			  xf_user u
 			INNER JOIN
@@ -98,7 +106,15 @@ class Permissions {
         foreach($users as $user) {
 
             $identities = $app->repository('Kieran\Identity:Identity')->findIdentityByUserIdByType($user['user_id'], $type->identity_type_id);
-            $cache_value = json_decode($user['cache_value'], true);
+			$cache_value = json_decode($user['cache_value'], true);
+			
+			$chat_rank = "";
+			$userGroups = array_merge(explode(',', $user['secondary_group_ids']), [$user['user_group_id']]);
+			foreach ($userGroups as $group) {
+				if (isset($groups[$group])) {
+					$chat_rank .= $groups[$group];
+				}
+			}
 
             foreach ($identities as $identity) {
                 
@@ -126,8 +142,10 @@ class Permissions {
 
                     $userAdmin->flags = $userFlags;
                     $userAdmin->immunity = $cache_value['identitySteam']['immunity'];
+                    $userAdmin->chat_rank = $chat_rank;
                 } else {
                     $userAdmin->flags = "";
+                    $userAdmin->chat_rank = "";
                     $userAdmin->immunity = 0;
                 }
                 
@@ -146,4 +164,9 @@ class Permissions {
     private static function getIdentityTypeRepo() {
 		return XF::repository('Kieran\Identity:IdentityType');
     }
+	
+	protected static function getUserGroupRepo()
+	{
+		return XF::repository('XF:UserGroup');
+	}
 }
