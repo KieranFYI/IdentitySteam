@@ -45,8 +45,12 @@ class Permissions {
             $users[] = $entity->User;
         }
 
-        if (strcmp('XF\Entity\User', $class) === 0) {
-            $users[] = $entity;
+		if (strpos($class, 'XF\Entity\User') === 0) {
+			if (isset($entity->User)) {
+				$users[] = $entity->User;
+			} else {
+				$users[] = $entity;
+			}
         }
         
         if (strcmp('XF\Entity\UserGroup', $class) === 0) {
@@ -64,6 +68,9 @@ class Permissions {
         }
 
         foreach($users as $user) {
+			if (!isset($user->user_id)) {
+				continue;
+			}
             if (!isset(self::$usersToBuild[$user->user_id])) {
                 self::$usersToBuild[$user->user_id] = $user->user_id;
             }
